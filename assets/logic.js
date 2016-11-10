@@ -6,13 +6,26 @@ var gifList = ['Tigers','Lion','Sloth','Donald Trump']
 
 
 function displayGifs(){
-	var gif = $(this).attr('data-gifs');
+	var gif = $(this).data('gifs');
 	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=dc6zaTOxFJmzC&limit=10"
 
 	//CALL GIPHY AJAX
 	$.ajax({url: queryURL, metho: 'GET'}).done(function(response){
-			console.log(response);
+			console.log(response.data);
 
+		var results = response.data;
+
+	for(var i = 0; i < results.length; i++){
+			var gifDiv = $('<div class="item">')
+			
+			var personImage = $('<img>');
+			personImage.attr('src', results[i].images.fixed_height.url);
+
+			gifDiv.append(personImage);
+
+			$('#gifContent').prepend(gifDiv);
+
+		}
 	});
 }
 
@@ -60,7 +73,7 @@ $('#addGif').on('click',function(){
 
 	// USER CAN HIT ENTER TO SUBMIT SEARCH FOR GIFS AND ADD BUTTON
 	return false;
-})
+}) // ENDS #addGif Function
 
 $(document).on('click','.giphys',displayGifs);
 
