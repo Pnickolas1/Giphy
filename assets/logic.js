@@ -5,12 +5,14 @@ $(document).ready(function(){
 var gifList = ['Tigers','Lion','Sloth','Donald Trump']
 
 
+
+
 function displayGifs(){
 	var gif = $(this).data('gifs');
 	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=dc6zaTOxFJmzC&limit=10"
 
 	//CALL GIPHY AJAX
-	$.ajax({url: queryURL, metho: 'GET'}).done(function(response){
+	$.ajax({url: queryURL, method: 'GET'}).done(function(response){
 			console.log(response.data);
 
 		var results = response.data;
@@ -18,10 +20,10 @@ function displayGifs(){
 	for(var i = 0; i < results.length; i++){
 			var gifDiv = $('<div class="item">')
 			
-			var personImage = $('<img>');
-			personImage.attr('src', results[i].images.fixed_height.url);
+			var gifImage = $('<img>');
+			gifImage.attr('src', results[i].images.fixed_width.url);
 
-			gifDiv.append(personImage);
+			gifDiv.append(gifImage);
 
 			$('#gifContent').prepend(gifDiv);
 
@@ -29,13 +31,10 @@ function displayGifs(){
 	});
 }
 
-
-
-
 function renderButtons(){
 
 	// DELETES THE GIFS PRIOR TO ADDING NEW MOVIES 
-	$("#gifsButtons").empty();
+	$("#gifContent").empty();
 
 	//LOOPS THROUGH THE ARRAY OF GIFS SEARCH
 	for(var i = 0; i < gifList.length; i++){
@@ -46,7 +45,7 @@ function renderButtons(){
 		a.addClass('giphys') ;
 
 		// add data-gifs attribute
-		a.attr('data-gifs');
+		a.attr('data-gifs', gifList[i]);
 		
 		//index thru array and nunber of items
 		a.text(gifList[i]);
