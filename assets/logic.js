@@ -34,7 +34,7 @@ function displayGifs(){
 function renderButtons(){
 
 	// DELETES THE GIFS PRIOR TO ADDING NEW MOVIES 
-	$("#gifContent").empty();
+	$("#gifsButtons").empty();
 
 	//LOOPS THROUGH THE ARRAY OF GIFS SEARCH
 	for(var i = 0; i < gifList.length; i++){
