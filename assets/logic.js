@@ -18,7 +18,12 @@ function displayGifs(){
 	for(var i = 0; i < results.length; i++){
 			var gifDiv = $('<div>').addClass("col-sm-4")
 			
+			var rating = results[i].rating;
+			var p = $('<p>').text("Rating: " + rating);
 			var gifImage = $('<img>');
+
+
+
 
 			// ANIMATED GIFS
 			gifImage.attr({src: results[i].images.fixed_width_still.url ,
@@ -26,15 +31,15 @@ function displayGifs(){
 						'data-animate': results[i].images.fixed_width.url,
 						'data-still': results[i].images.fixed_width_still.url,
 						'data-state': "still"
+						
 			});
 				console.log("animate: ", results[i].images.fixed_width.url);
 				console.log("still: ", results[i].images.fixed_width_still.url)
+				console.log('rating',results[i].rating);
 			//STILL GIFS
+			gifDiv.append(p);
 			gifDiv.append(gifImage);
-			
-			// // setting a state to the gifs when loaded
-			// var state = $(this).attr('data-state');
-
+		
 			$('#gifContent').prepend(gifDiv);
 
 		}
