@@ -92,6 +92,8 @@ $(document).on('click','.giphys',displayGifs);
     
 renderButtons();
 
+
+// this function toggles buttons back and forth from animate to still
 $(document).on('click','.gif', function(){
 	console.log("click gif")
 	var state = $(this).attr('data-state');
@@ -109,30 +111,3 @@ $(document).on('click','.gif', function(){
 }); // Ends Script from Document.ready - LINE 1
 
 // http://api.giphy.com/v1/gifs/search?q=DonalTrump&api_key=dc6zaTOxFJmzC&limit=10
-
-
-
-
-//http://api.giphy.com/v1/gifs/search?q=Kanye&api_key=dc6zaTOxFJmzC&limit=10
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
