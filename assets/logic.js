@@ -2,10 +2,7 @@ $(document).ready(function(){
 	console.log("document loaded");
 
 // SET AN ARRAY WITH A NUMBER OF ANIMALS
-var gifList = ['Tigers','Lion','Sloth','Donald Trump']
-
-
-
+var gifList = ['Tigers','Lion','Sloth','Bear']
 
 function displayGifs(){
 	$("#gifContent").html("");
@@ -24,21 +21,25 @@ function displayGifs(){
 			var gifImage = $('<img>');
 
 			// ANIMATED GIFS
-			gifImage.attr({src: results[i].images.fixed_width.url,
+			gifImage.attr({src: results[i].images.fixed_width_still.url ,
 						class: "gif",
 						'data-animate': results[i].images.fixed_width.url,
 						'data-still': results[i].images.fixed_width_still.url,
+						'data-state': "still"
 			});
 				console.log("animate: ", results[i].images.fixed_width.url);
 				console.log("still: ", results[i].images.fixed_width_still.url)
 			//STILL GIFS
 			gifDiv.append(gifImage);
+			
+			// // setting a state to the gifs when loaded
+			// var state = $(this).attr('data-state');
 
 			$('#gifContent').prepend(gifDiv);
 
 		}
 	});
-}
+};
 
 function renderButtons(){
 
@@ -83,15 +84,25 @@ $('#addGif').on('click',function(){
 	return false;
 }) // ENDS #addGif Function
 
+
+
+
+
 $(document).on('click','.giphys',displayGifs);
-
-
+    
 renderButtons();
 
-$('.giphys').on('click',function(){
-	if()
-
-})
+$(document).on('click','.gif', function(){
+	console.log("click gif")
+	var state = $(this).attr('data-state');
+	if(state == 'still'){
+		$(this).attr('src', $(this).data('animate'));
+		$(this).attr('data-state','animate');
+	}else{
+		$(this).attr('src',$(this).data('still'));
+		$(this).attr('data-state','still');
+	}
+});
 
 
 
